@@ -1,0 +1,25 @@
+1. Anime Facts
+
+- I can get a list of all available animes - I should do this and store it maybe?
+- I can get a list of all facts for a specific anime - maybe store that as a length?
+- I can get an individual fact for an anime. This is what I want to display. I also want to display the anime name and potentially a picture?
+
+2. Anime DB
+
+- Can take in a search term
+- Can take in genres
+- Can take in both if wanted
+- I can set a page size
+- No auth is needed
+
+3. AniDB
+
+- I must register my client
+- I set up my client for my project
+- I have the client, clientver, and protover for each request
+- I get a lot of data back, so I'll need to parse through that and pick what I want
+- There is a random request API. That could be really cool to use
+- There is a random similar API. I love that!
+
+
+
