@@ -1,0 +1,15 @@
+:root {
+    --primary-color: #990000;
+    --secondary-color: #273403;
+    --accent-color: #F56416;
+    --neutral-color-1: #8A8E91;
+    --neutral-color-2: #F7F7FF;
+
+    --heading-font: 'Reenie Beanie', cursive;
+    --paragraph-font: 'Advent Pro', sans-serif;
+}
+
+body {
+    font-family: var(--paragraph-font);
+    color: var(--neutral-color-2);
+}
