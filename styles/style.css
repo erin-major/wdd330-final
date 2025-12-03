@@ -15,3 +15,28 @@ main {
     color: var(--neutral-color-2);
     background-color: var(--background-color);
 }
+
+h1 {
+    font-family: var(--heading-font);
+    color: var(--primary-color);
+    font-size: 7rem;
+    z-index: 2;
+    padding-left: 3.5rem;
+    rotate: -9deg;
+    margin-top: 2.5rem;
+}
+
+header {
+    display: grid;
+}
+
+header h1, header picture {
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+picture img {
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
