@@ -10,7 +10,10 @@
     --paragraph-font: 'Advent Pro', sans-serif;
 }
 
-main, nav, footer, header {
+main,
+nav,
+footer,
+header {
     font-family: var(--paragraph-font);
     color: var(--neutral-color-2);
     background-color: var(--background-color);
@@ -26,11 +29,13 @@ h1 {
     margin-top: 2.5rem;
 }
 
-header {
+header,
+body {
     display: grid;
 }
 
-header h1, header picture {
+header h1,
+header picture {
     grid-column-start: 1;
     grid-row-start: 1;
 }
@@ -41,11 +46,64 @@ picture img {
     z-index: 1;
 }
 
-a  {
+a {
     text-decoration: none;
     color: var(--neutral-color-2);
 }
 
 ul {
     list-style-type: none;
+    padding: 0;
+}
+
+#nav.close {
+    display: none;
+}
+
+#menu.close::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* solid icons require this */
+    content: "\f6c4";
+    /* fa-grid-2 (FA6 equivalent of th-large) */
+    font-size: 5rem;
+    /* optional */
+    display: inline-block;
+    /* helps with alignment */
+}
+
+nav.open {
+    display: block;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+nav ul li {
+    font-size: 2rem;
+    background-color: var(--primary-color);
+    padding: 2rem 1rem;
+    margin: 0 .5rem;
+    text-align: center;
+}
+
+nav ul li:hover {
+    background-color: var(--accent-color);
+    cursor: pointer;
+}
+
+
+@media screen and (min-width: 530px) {
+
+    nav.open {
+        grid-column-start: 2;
+    }
+
+    nav ul li {
+        margin: 1rem;
+    }
 }
