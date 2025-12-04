@@ -62,14 +62,13 @@ ul {
 
 #menu.close::before {
     font-family: "Font Awesome 6 Free";
+    /* kits use this */
     font-weight: 900;
-    /* solid icons require this */
-    content: "\f6c4";
-    /* fa-grid-2 (FA6 equivalent of th-large) */
-    font-size: 5rem;
-    /* optional */
+    /* solid icons */
+    content: "\f009";
+    /* ← correct unicode for th-large when using Kits */
+    font-size: 1.3rem;
     display: inline-block;
-    /* helps with alignment */
 }
 
 nav.open {
@@ -80,16 +79,32 @@ nav ul {
     display: flex;
     flex-direction: column;
     height: 100%;
-    justify-content: space-evenly;
+    margin: 0;
+    /* justify-content: center; */
 }
 
 nav ul li {
     font-size: 2rem;
     background-color: var(--primary-color);
     padding: 2rem 1rem;
-    margin: 0 .5rem;
-    text-align: center;
+    /* margin: 0 .5rem; */
+    margin: 0;
+    text-align: center;    
 }
+nav ul li:nth-child(1) {
+    clip-path: polygon(0 0, 100% 0%, 100% 80%, 0 100%);
+    padding-top: 3rem;
+}
+
+nav ul li:nth-child(2) {
+    clip-path: polygon(0 20%, 100% 0%, 100% 80%, 0 100%);
+}
+
+nav ul li:nth-child(3) {
+    clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0 100%);
+}
+
+
 
 nav ul li:hover {
     background-color: var(--accent-color);
@@ -104,6 +119,7 @@ nav ul li:hover {
     }
 
     nav ul li {
-        margin: 1rem;
+        /* margin: 1rem; */
+        margin: 0 .5rem;
     }
 }
