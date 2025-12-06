@@ -142,6 +142,11 @@ nav ul li:hover {
     color: var(--accent-color);
 }
 
+footer {
+    font-size: 1.5rem;
+    grid-column-start: 1;
+}
+
 
 @media screen and (min-width: 50rem) {
 
