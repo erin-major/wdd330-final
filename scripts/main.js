@@ -1,5 +1,4 @@
 import { loadHeaderFooter } from './utils.mjs';
-import { getFacts } from './facts.mjs';
 
 await loadHeaderFooter();
 
@@ -21,11 +20,3 @@ menu.addEventListener('click', () => {
         menu.classList.add("open");
     }
 });
-
-(async () => {
-    try {
-        const facts = await getFacts();
-    } catch (e) {
-        console.error("main.js error:", e);
-    }
-})();
