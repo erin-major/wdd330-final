@@ -43,3 +43,4 @@ function getDatesInFooter() {
         if (lastModified) lastModified.innerHTML = `Last Modified: ${todayFormatted}`;
     }, 0);
 }
+

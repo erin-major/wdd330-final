@@ -10,10 +10,13 @@
     --paragraph-font: 'Advent Pro', sans-serif;
 }
 
-main, nav, footer, header {
+main,
+nav,
+footer,
+header {
     font-family: var(--paragraph-font);
-    color: var(--neutral-color-2);
-    background-color: var(--background-color);
+    color: var(--secondary-color);
+    background-color: var(--neutral-color-2);
 }
 
 h1 {
@@ -21,18 +24,16 @@ h1 {
     color: var(--primary-color);
     font-size: 7rem;
     z-index: 2;
-    padding-left: 3.5rem;
-    rotate: -9deg;
-    margin-top: 2.5rem;
-}
-
-header {
-    display: grid;
-}
-
-header h1, header picture {
+    margin: 0;
+    padding: 0;
+    transition: all 0.5s ease-out;
     grid-column-start: 1;
     grid-row-start: 1;
+}
+
+header,
+body {
+    display: grid;
 }
 
 picture img {
@@ -41,11 +42,222 @@ picture img {
     z-index: 1;
 }
 
-a  {
+a {
     text-decoration: none;
     color: var(--neutral-color-2);
 }
 
 ul {
     list-style-type: none;
+    padding: 0;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    justify-content: center;
+}
+
+nav ul li {
+    font-size: 2rem;
+    background-color: var(--primary-color);
+    text-align: center;
+    transform: translateY(-12px);
+    opacity: 0;
+}
+
+#nav.close {
+    display: none;
+}
+
+nav.open {
+    display: block;
+}
+
+nav.open ul li {
+    animation: slideInFromTopRow 420ms cubic-bezier(.2, .9, .2, 1) forwards;
+    border: 1px solid var(--neutral-color-2);
+}
+
+nav.open ul li:nth-child(1) {
+    animation-delay: 0ms;
+}
+
+nav.open ul li:nth-child(2) {
+    animation-delay: 80ms;
+}
+
+nav.open ul li:nth-child(3) {
+    animation-delay: 160ms;
+}
+
+nav.open ul li:nth-child(4) {
+    animation-delay: 240ms;
+}
+
+nav ul li:hover {
+    background-color: var(--accent-color);
+    cursor: pointer;
+}
+
+#menu {
+    background: none;
+    border: none;
+    font-size: 3rem;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--primary-color);
+}
+
+#menu.close {
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+}
+
+#menu.open {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    align-self: start;
+    justify-self: end;
+    position: absolute;
+    top: 1.7rem;
+    right: 1rem;
+}
+
+#menu.close::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 600;
+    content: "\f0c9";
+}
+
+#menu.open::before {
+    content: "\2718";
+    grid-column-start: 1;
+}
+
+#menu:hover {
+    color: var(--accent-color);
+}
+
+footer {
+    font-size: 1.5rem;
+    grid-column-start: 1;
+}
+
+
+@media screen and (min-width: 50rem) {
+
+    nav.open {
+        grid-column-start: 2;
+        transition: all 0.5s ease-out;
+    }
+
+    nav ul li {
+        margin-left: .5rem;
+        padding: 2.2rem 1rem;
+        transition: all 0.5s ease-out;
+    }
+
+    h1 {
+        padding-left: 3.5rem;
+        transform: rotate(-9deg);
+        margin: 2rem 0 2.5rem;
+    }
+
+    header h1,
+    header picture {
+        grid-column-start: 1;
+        grid-row-start: 1;
+    }
+
+    #menu.open {
+        position: static;
+        padding: .5rem 3vw;
+    }
+
+    #menu.close {
+        padding: .5rem 3vw;
+        right: 1rem;
+        transform: rotate(-5deg);
+    }
+
+    nav.open {
+        animation: slideInFromRight 0.5s ease-out forwards;
+    }
+
+    nav ul li:nth-child(1) {
+        clip-path: polygon(0 0, 100% 0%, 100% 70%, 0 100%);
+    }
+
+    nav ul li:nth-child(2) {
+        clip-path: polygon(0 30%, 100% 0%, 100% 90%, 0 100%);
+        margin-bottom: .9rem;
+    }
+
+    nav ul li:nth-child(3) {
+        clip-path: polygon(0 10%, 100% 0%, 100% 100%, 0 80%);
+    }
+
+    nav ul li:nth-child(4) {
+        clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 100%);
+    }
+
+    nav.open ul li {
+        animation-delay: 0ms;
+    }
+}
+
+@media screen and (min-width: 80rem) {
+
+    nav.open {
+        grid-column-start: 2;
+        transition: all 0.5s ease-out;
+    }
+
+    h1 {
+        transform: none;
+        font-size: 10rem;
+        transition: all 0.5s ease-out;
+    }
+
+    #menu.close,
+    #menu.open {
+        transform: none;
+        padding: .5rem 1vw;
+        transition: all 0.5s ease-out;
+    }
+}
+
+@media screen and (min-width: 1700px) {
+    nav ul li {
+        padding: 3rem 1rem;
+        transition: all 0.5s ease-out;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTopRow {
+    0% {
+        transform: translateY(-12px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
