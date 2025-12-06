@@ -22,6 +22,6 @@ menu.addEventListener('click', () => {
     }
 });
 
-const test = await searchByTitle(1, 10, "naruto");
-console.log(test);
+// const test = await searchByTitle(1, 10, "naruto");
+// console.log(test);
 // searchByGenre(1, 10, "action");
