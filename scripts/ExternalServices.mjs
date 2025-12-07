@@ -10,8 +10,7 @@ export async function convertToJson(res) {
 }
 
 export async function searchByTitle(page, size, title) {
-    const url = `${searchUrl}?page=${page}&size=${size}&search=${title}&sortBy=ranking&sortOrder=asc`
-    
+    const url = `${searchUrl}?page=${page}&size=${size}&search=${title}&sortBy=title&sortOrder=asc&types=TV`
     const options = {
         method: "GET",
         headers: {
@@ -28,8 +27,12 @@ export async function searchByTitle(page, size, title) {
 }
 
 export async function searchByGenre(page, size, genre) {
-    const url = `${searchUrl}?page=${page}&size=${size}&genre=${genre}&sortBy=ranking&sortOrder=asc`
-
+    let firstChar = genre.charAt(0).toUpperCase();
+    let remainingChar = genre.slice(1);
+    genre = firstChar + remainingChar;
+    console.log(genre);
+    const url = `${searchUrl}?page=${page}&size=${size}&genres=${genre}&sortBy=ranking&sortOrder=asc`
+    console.log(url);
     const options = {
         method: "GET",
         headers: {
