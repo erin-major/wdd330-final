@@ -1,5 +1,5 @@
-import { searchByTitle, searchByGenre } from './ExternalServices.mjs';
 import { loadHeaderFooter } from './utils.mjs';
+import SearchProcess from './SearchProcess.mjs';
 
 await loadHeaderFooter();
 
@@ -22,6 +22,5 @@ menu.addEventListener('click', () => {
     }
 });
 
-// const test = await searchByTitle(1, 10, "naruto");
-// console.log(test);
-// searchByGenre(1, 10, "action");
+const search = new SearchProcess('#searchBox');
+search.init();
