@@ -31,7 +31,9 @@ h1 {
     grid-row-start: 1;
 }
 
-header, body, main {
+header,
+body,
+main {
     display: grid;
 }
 
@@ -149,8 +151,6 @@ footer {
 #searchBox {
     font-size: 1.5rem;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     padding: 1rem;
     grid-gap: .5rem;
 }
@@ -162,19 +162,44 @@ footer {
     font-size: 1.5rem;
 }
 
+#titleSearch {
+    grid-row-start: 3;
+    margin-top: 1rem;
+}
+
 #genreSearch {
-    grid-row-start: 2;
+    grid-row-start: 4;
 }
 
 #searchButton {
-    grid-column-start: 3;
-    grid-row: 1 / span 2;
+    grid-row-start: 5;
+    width: 20rem;
     font-size: 3rem;
     font-family: var(--heading-font);
+    background-color: var(--neutral-color-1);
+    border-radius: 30px;
+    border: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    box-shadow: 0 0 3px var(--primary-color);
+    cursor: pointer;
+    margin-top: 1rem;
 }
 
+#searchButton:hover {
+    color: var(--accent-color);
+    box-shadow: 0 0 5px var(--accent-color);
+}
 
+#results {
+    min-height: 200px;
+}
 
+#emptyResults {
+    text-align: center;
+    font-family: var(--heading-font);
+    font-size: 3rem;
+}
 
 @media screen and (min-width: 50rem) {
 
@@ -235,6 +260,31 @@ footer {
 
     nav.open ul li {
         animation-delay: 0ms;
+    }
+
+    #searchBox {
+        grid-template-columns: 350px 190px 175px auto;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #titleSearch, #genreSearch {
+        grid-column-start: 2;
+    }
+
+    #titleSearch {
+        grid-row-start: 1;
+        margin-top: 0;
+    }
+
+    #genreSearch {
+        grid-row-start: 2;
+    }
+
+    #searchButton {
+        grid-column-start: 3;
+        grid-row: 1 / span 2;
+        margin-top: 0;
+        width: auto;
     }
 }
 
