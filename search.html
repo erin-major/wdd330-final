@@ -23,12 +23,12 @@
     <header id="header"></header>
     <nav id="nav" class="close"></nav>
     <main>
-        <div id="searchBox">
+        <form id="searchBox">
             <input type="text" id="searchInput" placeholder="Search for an anime...">
-            <label><input type="checkbox" id="titleSearch" name="searchType" value="yes">Search by Title</label><br>
-            <label><input type="checkbox" id="genreSearch" name="searchType" value="yes">Search by Title</label>
+            <label id="titleSearch"><input type="radio" name="searchType" value="yes" required>Search by Title</label>
+            <label id="genreSearch"><input type="radio" name="searchType" value="yes">Search by Genre</label>
             <button id="searchButton">Search</button>
-        </div>
+        </form>
         <section id="results">
         </section>
     </main>
