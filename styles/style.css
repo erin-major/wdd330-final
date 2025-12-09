@@ -307,6 +307,14 @@ footer {
     #quote {
         width: 90%;
     }
+
+    .short {
+        display: block;
+    }
+
+    .long {
+        display: none;
+    }
 }
 
 .fa-solid.fa-spinner {
@@ -354,6 +362,12 @@ footer {
 
 #watchlist {
     margin-bottom: 4rem;
+}
+
+.emptyList {
+    font-family: var(--heading-font);
+    font-size: 2rem;
+    text-align: center;
 }
 
 @media screen and (min-width: 50rem) {
@@ -451,6 +465,14 @@ footer {
             grid-column: 1 / span 2;
             width: 95%;
         }
+
+        .short {
+            display: none;
+        }
+
+        .long {
+            display: block;
+        }
     }
 }
 
@@ -493,9 +515,10 @@ footer {
     }
 
     #emptyResults,
-    #loadingSpinner {
+    #loadingSpinner, .emptyList {
         grid-column: 1 / span 2;
     }
+
 }
 
 @keyframes slideInFromRight {
