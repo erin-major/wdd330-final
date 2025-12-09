@@ -55,7 +55,6 @@ export function displayListOfAnime(list, elementId) {
 
     else {
         existingList.forEach(anime => {
-            console.log("display start...")
             let card = renderAnime(anime, false);
             elementId.appendChild(card);
         });

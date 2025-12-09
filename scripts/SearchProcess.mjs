@@ -15,7 +15,6 @@ export default class SearchProcess {
         if (!form) return;
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            console.log("form worked");
             document.querySelector('#results').innerHTML = ``;
             let spinner = document.createElement('p');
             spinner.id = 'loadingSpinner';
@@ -47,7 +46,6 @@ export default class SearchProcess {
         this.searchTitle = selected?.parentElement?.id === "titleSearch";
         this.searchGenre = selected?.parentElement?.id === "genreSearch";
 
-        console.log("handle worked");
         document.querySelector('#searchInput').value = null;
         this.runSearch();
     }
@@ -60,7 +58,6 @@ export default class SearchProcess {
             } else {
                 results = await searchByGenre(1, 20, this.searchText);
             }
-            console.log("search worked");
             this.showResults(results);
             this.results = results.data;
         } catch (err) {
@@ -71,13 +68,11 @@ export default class SearchProcess {
     showResults(data) {
         const results = document.querySelector('#results');
         results.innerHTML = '';
-        console.log("made it here")
         if (!data || !data.data || data.data.length === 0) {
             results.innerHTML = '<p id="emptyResults">No results found. Please try again!</p>';
             return;
         }
         data.data.forEach(item => {
-            console.log("anime start")
             let card = renderAnime(item);
             results.appendChild(card);
         });
