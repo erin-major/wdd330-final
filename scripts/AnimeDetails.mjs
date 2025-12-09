@@ -10,6 +10,9 @@ export function renderAnime(anime, buttons = true) {
     let genres = document.createElement('p');
     let synopsis = document.createElement('p');
 
+    genres.classList.add('genres');
+    synopsis.classList.add('synopsis');
+
     title.textContent = anime.title;
     genres.textContent = anime.genres.join(", ");
     synopsis.textContent = anime.synopsis;

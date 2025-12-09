@@ -16,6 +16,7 @@ export default class SearchProcess {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             console.log("form worked");
+            document.querySelector('#results').innerHTML = `<i class="fa-solid fa-spinner"></i>`;
             this.handleSearch();
         });
 
@@ -51,9 +52,9 @@ export default class SearchProcess {
         try {
             let results;
             if (this.searchTitle) {
-                results = await searchByTitle(1, 10, this.searchText);
+                results = await searchByTitle(1, 20, this.searchText);
             } else {
-                results = await searchByGenre(1, 10, this.searchText);
+                results = await searchByGenre(1, 20, this.searchText);
             }
             console.log("search worked");
             this.showResults(results);
