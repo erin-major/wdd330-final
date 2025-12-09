@@ -1,4 +1,5 @@
 import { loadHeaderFooter } from './utils.mjs';
+import { getRandomAnime } from './ExternalServices.mjs';
 
 await loadHeaderFooter();
 
@@ -23,3 +24,5 @@ menu.addEventListener('click', () => {
         if (header) header.classList.add('nav-open');
     }
 });
+
+getRandomAnime();
