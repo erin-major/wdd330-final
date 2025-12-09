@@ -7,7 +7,7 @@ const menu = document.querySelector('#menu');
 const navElement = document.querySelector('#nav');
 const header = document.querySelector('#header');
 const watchList = document.querySelector('#watchlist');
-const watchedList = document.querySelector('#watchedList');
+const archive = document.querySelector('#archive');
 
 menu.addEventListener('click', () => {
 
@@ -27,8 +27,5 @@ menu.addEventListener('click', () => {
     }
 });
 
-console.log(watchList);
-console.log(watchedList);
-
-displayListOfAnime('watched', watchedList);
+displayListOfAnime('archive', archive);
 displayListOfAnime('watchLater', watchList);
