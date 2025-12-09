@@ -1,6 +1,7 @@
 import { searchByTitle, searchByGenre } from './ExternalServices.mjs';
 import { renderAnime } from './AnimeDetails.mjs';
 import { setLocalStorage, getLocalStorage } from './utils.mjs';
+import { attachListClickHandler } from './ListActions.mjs';
 
 export default class SearchProcess {
     constructor(outputSelector) {
@@ -15,7 +16,6 @@ export default class SearchProcess {
         if (!form) return;
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            console.log("form worked");
             document.querySelector('#results').innerHTML = ``;
             let spinner = document.createElement('p');
             spinner.id = 'loadingSpinner';
@@ -25,19 +25,11 @@ export default class SearchProcess {
         });
 
         const resultsContainer = document.querySelector('#results');
-
-        resultsContainer.addEventListener('click', (e) => {
-            const btn = e.target.closest('button');
-            if (!btn) return;  
-            if (btn.className === 'archive') {
-                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-            }
-            else {
-                btn.innerHTML = '<i class="fa-solid fa-star"></i>';
-            }
-            
-            this.addToList(btn.className, btn.id);
-        })
+        if (resultsContainer) {
+            attachListClickHandler(resultsContainer, {
+                getAnimeById: (id) => this.results?.find(a => a.id === id)
+            });
+        }
     }
 
     handleSearch() {
@@ -47,7 +39,6 @@ export default class SearchProcess {
         this.searchTitle = selected?.parentElement?.id === "titleSearch";
         this.searchGenre = selected?.parentElement?.id === "genreSearch";
 
-        console.log("handle worked");
         document.querySelector('#searchInput').value = null;
         this.runSearch();
     }
@@ -60,7 +51,6 @@ export default class SearchProcess {
             } else {
                 results = await searchByGenre(1, 20, this.searchText);
             }
-            console.log("search worked");
             this.showResults(results);
             this.results = results.data;
         } catch (err) {
@@ -71,13 +61,11 @@ export default class SearchProcess {
     showResults(data) {
         const results = document.querySelector('#results');
         results.innerHTML = '';
-        console.log("made it here")
         if (!data || !data.data || data.data.length === 0) {
             results.innerHTML = '<p id="emptyResults">No results found. Please try again!</p>';
             return;
         }
         data.data.forEach(item => {
-            console.log("anime start")
             let card = renderAnime(item);
             results.appendChild(card);
         });
@@ -92,5 +80,11 @@ export default class SearchProcess {
             existingList.push(storingAnime);
         }
         setLocalStorage(list, existingList);
+    }
+
+    removeFromList(list, animeId) {
+        const existingList = getLocalStorage(list) || [];
+        const newList = existingList.filter(a => a.id !== animeId);
+        setLocalStorage(list, newList);
     }
 }
