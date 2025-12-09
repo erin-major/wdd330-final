@@ -1,6 +1,6 @@
 const searchUrl = "https://anime-db.p.rapidapi.com/anime"
 const randomUrl = "https://myanimelist.p.rapidapi.com/v2/anime/recommendations?p=1"
-const quoteUrl = "https://anime-quotes1.p.rapidapi.com/api/random"
+const quoteUrl = "https://quotes-api12.p.rapidapi.com/quotes/anime"
 
 export async function convertToJson(res) {
     const jsonResponse = await res.json();
@@ -74,16 +74,12 @@ export async function getAnimeQuote() {
         method: "GET",
         headers: {
             'x-rapidapi-key': 'cb1e11498cmsh370c53a77737d25p1627d4jsnf8554f719428',
-            'x-rapidapi-host': 'anime-quotes1.p.rapidapi.com'
+            'x-rapidapi-host': 'quotes-api12.p.rapidapi.com'
         }
     };
 
     try {
-        const response = await fetch(url, options);
-        console.log(response);
-        let result = await response.text();
-        console.log(result);
-        return result;
+        return await fetch(url, options).then(convertToJson);
     } catch (error) {
         console.error(error);
         return null;

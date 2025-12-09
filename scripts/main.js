@@ -1,5 +1,5 @@
 import { loadHeaderFooter } from './utils.mjs';
-import { displayRandomAnime } from './AnimeDetails.mjs';
+import { displayRandomAnime, displayAnimeQuote } from './AnimeDetails.mjs';
 import { getAnimeQuote } from './ExternalServices.mjs';
 
 await loadHeaderFooter();
@@ -27,8 +27,4 @@ menu.addEventListener('click', () => {
 });
 
 displayRandomAnime();
-let test = await getAnimeQuote();
-console.log(test);
-
-// let test = getRandomAnime();
-// console.log(test);
+displayAnimeQuote();
