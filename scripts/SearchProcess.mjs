@@ -16,7 +16,11 @@ export default class SearchProcess {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             console.log("form worked");
-            document.querySelector('#results').innerHTML = `<i class="fa-solid fa-spinner"></i>`;
+            document.querySelector('#results').innerHTML = ``;
+            let spinner = document.createElement('p');
+            spinner.id = 'loadingSpinner';
+            spinner.innerHTML = `<i class="fa-solid fa-spinner"></i>`;
+            document.querySelector('#results').appendChild(spinner);
             this.handleSearch();
         });
 
@@ -25,7 +29,7 @@ export default class SearchProcess {
         resultsContainer.addEventListener('click', (e) => {
             const btn = e.target.closest('button');
             if (!btn) return;  
-            if (btn.className === 'watched') {
+            if (btn.className === 'archive') {
                 btn.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
             }
             else {

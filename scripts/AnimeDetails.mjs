@@ -27,17 +27,17 @@ export function renderAnime(anime, buttons = true) {
 
     if (buttons) {
         let watchLater = document.createElement('button');
-        let watched = document.createElement('button');
+        let archive = document.createElement('button');
         watchLater.innerHTML = '<i class="far fa-star"></i>';
         watchLater.id = anime.id;
         watchLater.title = 'Add to watch later list';
         watchLater.classList.add('watchLater');
-        watched.innerHTML = '<i class="far fa-check-circle" ></i >';
-        watched.id = anime.id;
-        watched.title = 'Mark as watched';
-        watched.classList.add('watched');
+        archive.innerHTML = '<i class="far fa-check-circle" ></i >';
+        archive.id = anime.id;
+        archive.title = 'Mark as watched';
+        archive.classList.add('archive');
         card.appendChild(watchLater);
-        card.appendChild(watched);
+        card.appendChild(archive);
     }
 
     return card;

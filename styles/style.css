@@ -79,7 +79,7 @@ nav {
     }
 
     .close {
-            display: none;
+        display: none;
     }
 }
 
@@ -199,9 +199,14 @@ footer {
 
 #results,
 #watchlist,
-#watchedList {
+#archive {
     min-height: 200px;
     display: grid;
+}
+
+#loadingSpinner {
+    justify-self: center;
+    align-self: center;
 }
 
 #emptyResults {
@@ -246,7 +251,7 @@ footer {
         align-self: start;
     }
 
-    button.watched {
+    button.archive {
         grid-column-start: 2;
     }
 
@@ -285,12 +290,6 @@ footer {
         margin-top: 0;
     }
 
-    .fa-solid.fa-spinner {
-        font-size: 4rem;
-        color: var(--primary-color);
-        animation: spin 1.5s linear infinite;
-    }
-
     #intro,
     #randomAnime,
     #quote {
@@ -308,6 +307,12 @@ footer {
     #quote {
         width: 90%;
     }
+}
+
+.fa-solid.fa-spinner {
+    font-size: 4rem;
+    color: var(--primary-color);
+    animation: spin 1.5s linear infinite;
 }
 
 .quoteText {
@@ -447,8 +452,6 @@ footer {
             width: 95%;
         }
     }
-
-
 }
 
 @media screen and (min-width: 80rem) {
@@ -485,8 +488,13 @@ footer {
 
     #results,
     #watchlist,
-    #watchedList {
+    #archive {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    #emptyResults,
+    #loadingSpinner {
+        grid-column: 1 / span 2;
     }
 }
 
