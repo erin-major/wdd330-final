@@ -19,6 +19,12 @@ header {
     background-color: var(--neutral-color-2);
 }
 
+footer {
+    padding: 1rem;
+    border-top: 2px solid var(--secondary-color);
+    text-align: end;
+}
+
 h1 {
     font-family: var(--heading-font);
     color: var(--primary-color);
@@ -152,6 +158,7 @@ nav.open {
 footer {
     font-size: 1.5rem;
     grid-column-start: 1;
+    padding-top: 1rem;
 }
 
 #searchBox {
@@ -187,7 +194,7 @@ footer {
     border: none;
     color: var(--primary-color);
     font-weight: bold;
-    box-shadow: 0 0 3px var(--primary-color);
+    box-shadow: 0 0 3px var(--secondary-color);
     cursor: pointer;
     margin-top: 1rem;
 }
@@ -465,14 +472,6 @@ footer {
             grid-column: 1 / span 2;
             width: 95%;
         }
-
-        .short {
-            display: none;
-        }
-
-        .long {
-            display: block;
-        }
     }
 }
 
@@ -500,8 +499,18 @@ footer {
         grid-template-columns: 700px 190px 175px auto;
         transition: all 0.5s ease-out;
     }
-}
 
+    #home-page {
+        
+        .short {
+            display: none;
+        }
+
+        .long {
+            display: block;
+        }
+    }
+}
 @media screen and (min-width: 1700px) {
     nav ul li {
         padding: 3rem 1rem;

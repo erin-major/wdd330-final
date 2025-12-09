@@ -32,7 +32,7 @@ export async function searchByGenre(page, size, genre) {
     let firstChar = genre.charAt(0).toUpperCase();
     let remainingChar = genre.slice(1);
     genre = firstChar + remainingChar;
-    const url = `${searchUrl}?page=${page}&size=${size}&genres=${genre}&sortBy=ranking&sortOrder=asc`
+    const url = `${searchUrl}?page=${page}&size=${size}&genres=${genre}`
     const options = {
         method: "GET",
         headers: {
