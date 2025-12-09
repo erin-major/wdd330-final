@@ -1,5 +1,6 @@
 const searchUrl = "https://anime-db.p.rapidapi.com/anime"
 const randomUrl = "https://myanimelist.p.rapidapi.com/v2/anime/recommendations?p=1"
+const quoteUrl = "https://anime-quotes1.p.rapidapi.com/api/random"
 
 export async function convertToJson(res) {
     const jsonResponse = await res.json();
@@ -66,6 +67,29 @@ export async function getRandomAnime() {
         return null;
     }
 }
+
+export async function getAnimeQuote() {
+    const url = `${quoteUrl}`
+    const options = {
+        method: "GET",
+        headers: {
+            'x-rapidapi-key': 'cb1e11498cmsh370c53a77737d25p1627d4jsnf8554f719428',
+            'x-rapidapi-host': 'anime-quotes1.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+        console.log(response);
+        let result = await response.text();
+        console.log(result);
+        return result;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
 
 
 
