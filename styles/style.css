@@ -322,6 +322,11 @@ footer {
     .long {
         display: none;
     }
+
+    .errorMessage {
+        font-size: 1.5rem;
+        font-style: italic;
+    }
 }
 
 .fa-solid.fa-spinner {

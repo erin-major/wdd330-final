@@ -78,6 +78,7 @@ export async function displayRandomAnime() {
         const random = await getRandomAnime();
         if (!random || !random.recommendations || random.recommendations.length === 0) {
             let errorMessage = document.createElement('p');
+            errorMessage.classList.add('errorMessage');
             errorMessage.innerHTML = 'Unable to load recommendations.';
             randomContainer.appendChild(errorMessage);
             return;
@@ -105,6 +106,7 @@ export async function displayRandomAnime() {
         console.error(err);
         let errorMessage = document.createElement('p');
         errorMessage.innerHTML = 'Unable to load recommendations.';
+        errorMessage.classList.add('errorMessage');
         randomContainer.appendChild(errorMessage);
     } finally {
         const spinner = randomContainer?.querySelector('.fa-spinner');
@@ -118,6 +120,7 @@ export async function displayAnimeQuote() {
         const quote = await getAnimeQuote();
         if (!quote || !quote.quote) {
             let errorMessage = document.createElement('p');
+            errorMessage.classList.add('errorMessage');
             errorMessage.innerHTML = 'Unable to load quote.';
             quoteContainer.appendChild(errorMessage);
             return;
@@ -135,6 +138,7 @@ export async function displayAnimeQuote() {
     } catch (err) {
         console.error(err);
         let errorMessage = document.createElement('p');
+        errorMessage.classList.add('errorMessage');
         errorMessage.innerHTML = 'Unable to load quote.';
         quoteContainer.appendChild(errorMessage);
     } finally {
