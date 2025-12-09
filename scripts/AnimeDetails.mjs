@@ -1,8 +1,9 @@
 import { getLocalStorage } from './utils.mjs'
+import { getRandomAnime } from './ExternalServices.mjs';
 
 export function renderAnime(anime, buttons = true) {
     let card = document.createElement('div');
-    card.className = 'anime-card';
+    card.className = 'animeCard';
 
     let title = document.createElement('h2');
     let picture = document.createElement('img');
@@ -55,5 +56,29 @@ export function displayListOfAnime(list, elementId) {
             let card = renderAnime(anime, false);
             elementId.appendChild(card);
         });
+    }
+}
+
+export async function displayRandomAnime() {
+    let random = await getRandomAnime();
+    let randomContainer = document.querySelector('#randomAnime');
+
+    for (let i = 0; i < 3; i++) {
+        let anime = random.recommendations[i];
+
+        let card = document.createElement('div');
+        card.className = 'randomAnimeCard';
+
+        let title = document.createElement('h3');
+        let picture = document.createElement('img');
+
+        title.textContent = anime.liked.title;
+        picture.setAttribute('src', anime.liked.picture_url);
+        picture.setAttribute('loading', 'lazy');
+        picture.setAttribute('alt', anime.liked.title);
+
+        card.appendChild(title);
+        card.appendChild(picture);
+        randomContainer.appendChild(card);
     }
 }
