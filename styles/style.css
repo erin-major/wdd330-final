@@ -35,18 +35,6 @@ h2 {
     font-size: 2rem;
 }
 
-header,
-#home-page {
-    display: grid;    
-}
-
-picture img {
-    width: 100%;
-    height: auto;
-    z-index: 1;
-    box-shadow: 0 0 2px var(--secondary-color);
-}
-
 a {
     text-decoration: none;
     color: var(--neutral-color-2);
@@ -57,50 +45,69 @@ ul {
     padding: 0;
 }
 
-nav ul {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    margin: 0;
-    justify-content: center;
+header {
+    display: grid;
+
+    picture img {
+        width: 100%;
+        height: auto;
+        z-index: 1;
+        box-shadow: 0 0 2px var(--secondary-color);
+    }
 }
 
-nav ul li {
-    font-size: 2rem;
-    background-color: var(--primary-color);
-    text-align: center;
-    transform: translateY(-12px);
-    opacity: 0;
+nav {
+    ul {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin: 0;
+        justify-content: center;
+    }
+
+    ul li {
+        font-size: 2rem;
+        background-color: var(--primary-color);
+        text-align: center;
+        transform: translateY(-12px);
+        opacity: 0;
+    }
+
+    ul li:hover {
+        background-color: var(--accent-color);
+        cursor: pointer;
+    }
+
+    .close {
+            display: none;
+    }
 }
 
 #nav.close {
     display: none;
 }
 
-nav.open ul li {
-    animation: slideInFromTopRow 420ms cubic-bezier(.2, .9, .2, 1) forwards;
-    border: 1px solid var(--neutral-color-2);
-}
+nav.open {
+    ul li {
+        animation: slideInFromTopRow 420ms cubic-bezier(.2, .9, .2, 1) forwards;
+        border: 1px solid var(--neutral-color-2);
+    }
 
-nav.open ul li:nth-child(1) {
-    animation-delay: 0ms;
-}
+    ul li:nth-child(1) {
+        animation-delay: 0ms;
+    }
 
-nav.open ul li:nth-child(2) {
-    animation-delay: 80ms;
-}
+    ul li:nth-child(2) {
+        animation-delay: 80ms;
+    }
 
-nav.open ul li:nth-child(3) {
-    animation-delay: 160ms;
-}
+    ul li:nth-child(3) {
+        animation-delay: 160ms;
+    }
 
-nav.open ul li:nth-child(4) {
-    animation-delay: 240ms;
-}
-
-nav ul li:hover {
-    background-color: var(--accent-color);
-    cursor: pointer;
+    ul li:nth-child(4) {
+        animation-delay: 240ms;
+    }
 }
 
 #menu {
@@ -190,7 +197,9 @@ footer {
     box-shadow: 0 0 5px var(--accent-color);
 }
 
-#results {
+#results,
+#watchlist,
+#watchedList {
     min-height: 200px;
     display: grid;
 }
@@ -217,8 +226,9 @@ footer {
         color: var(--primary-color);
         font-size: 1.5rem;
     }
-        img {
-    
+
+    img {
+
         width: auto;
         height: auto;
         grid-column-start: 4;
@@ -227,7 +237,7 @@ footer {
         justify-self: center;
         box-shadow: 0 0 8px var(--secondary-color);
     }
-    
+
     button {
         grid-row-start: 1;
         border: none;
@@ -265,35 +275,39 @@ footer {
 
 }
 
-#intro p,
-#quote p {
-    font-size: 1.5rem;
-}
-
-#intro,
-#randomAnime,
-#quote {
-    border: 3px solid var(--background-color);
-    padding: 1rem;
-    width: 90%;
-    box-shadow: 0 0 2px var(--secondary-color);
-}
-
 #home-page {
+    display: grid;
     grid-gap: 10px;
     justify-items: center;
     margin: 2rem 0;
-}
 
-.fa-solid.fa-spinner {
-    font-size: 4rem;
-    color: var(--primary-color);
-    animation: spin 1.5s linear infinite;
-}
+    h2 {
+        margin-top: 0;
+    }
 
-#home-page h2,
-.randomAnimeCard h3 {
-    margin-top: 0;
+    .fa-solid.fa-spinner {
+        font-size: 4rem;
+        color: var(--primary-color);
+        animation: spin 1.5s linear infinite;
+    }
+
+    #intro,
+    #randomAnime,
+    #quote {
+        border: 3px solid var(--background-color);
+        padding: 1rem;
+        width: 90%;
+        box-shadow: 0 0 2px var(--secondary-color);
+    }
+
+    #intro p,
+    #quote p {
+        font-size: 1.5rem;
+    }
+
+    #quote {
+        width: 90%;
+    }
 }
 
 .quoteText {
@@ -311,19 +325,30 @@ footer {
     box-shadow: 0 0 2px var(--secondary-color);
     animation: fadeIn 2s linear forwards;
     min-height: 250px;
+
+    img {
+        max-width: 150px;
+        height: auto;
+        margin-left: auto;
+        box-shadow: 0 0 8px var(--secondary-color);
+    }
+
+    h3 {
+        color: var(--primary-color);
+        font-size: 2rem;
+        align-self: flex-start;
+        margin-top: 0;
+    }
 }
 
-.randomAnimeCard img {
-    max-width: 150px;
-    height: auto;
-    margin-left: auto;
-    box-shadow: 0 0 8px var(--secondary-color);
+.listHeading {
+    font-size: 2.5rem;
+    padding: 3rem 1rem 1rem 2rem;
+    margin: 0;
 }
 
-.randomAnimeCard h3 {
-    color: var(--primary-color);
-    font-size: 2rem;
-    align-self: flex-start;
+#watchlist {
+    margin-bottom: 4rem;
 }
 
 @media screen and (min-width: 50rem) {
@@ -331,7 +356,6 @@ footer {
     header.nav-open {
         grid-template-columns: 1fr auto;
     }
-
 
     nav.open {
         grid-column-start: 2;
@@ -417,12 +441,14 @@ footer {
 
     #home-page {
         grid-template-columns: 1fr 1fr;
+
+        #quote {
+            grid-column: 1 / span 2;
+            width: 95%;
+        }
     }
 
-    #quote {
-        grid-column: 1 / span 2;
-        width: 95%;
-    }
+
 }
 
 @media screen and (min-width: 80rem) {
@@ -457,7 +483,9 @@ footer {
         transition: all 0.5s ease-out;
     }
 
-    #results {
+    #results,
+    #watchlist,
+    #watchedList {
         grid-template-columns: repeat(2, 1fr);
     }
 }
