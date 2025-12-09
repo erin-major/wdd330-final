@@ -377,6 +377,22 @@ footer {
     text-align: center;
 }
 
+#referencesPage {
+
+    h1 {
+        transform: none;
+        margin: 20px;
+        padding-left: 10px;
+        transition: none;
+    }
+
+    p {
+        font-size: 1.5rem;
+        font-family: var(--paragraph-font);
+        margin-left: 2rem;
+    }
+}
+
 @media screen and (min-width: 50rem) {
 
     header.nav-open {
