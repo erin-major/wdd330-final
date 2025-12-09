@@ -1,5 +1,5 @@
 const searchUrl = "https://anime-db.p.rapidapi.com/anime"
-const randomUrl = "http://api.anidb.net:9001/httpapi"
+const randomUrl = '/.netlify/functions/getRandomAnime'
 
 export async function convertToJson(res) {
     const jsonResponse = await res.json();
@@ -49,15 +49,34 @@ export async function searchByGenre(page, size, genre) {
     }
 }
 
-export async function getRandomAnime() { 
-    const url = `${randomUrl}?client=animatefinal&clientver=1&protover=1&request=randomrecommendation`;
-    
+export async function getRandomAnime() {
+    const url = `${randomUrl}?request=randomrecommendation`;
+
     try {
-        let response = await fetch(`${url}`);
-        console.log("random worked");
-        console.log(response);
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error('Proxy error', response.status, data);
+            return { error: data, status: response.status };
+        }
+
+        // Function returns JSON. It may contain an AniDB error or an anime object.
+        if (data.error) {
+            console.error('AniDB/API error:', data.error);
+            return { error: data.error, raw: data.raw };
+        }
+
+        if (data.anime) {
+            console.log('random anime', data.anime);
+            return { aid: data.anime.aid, title: data.anime.title, raw: data.raw };
+        }
+
+        // Fallback: return raw payload
+        return { raw: data.raw || data };
     } catch (error) {
-        console.error(error);
+        console.error('Fetch error', error);
+        return { error };
     }
 }
 
