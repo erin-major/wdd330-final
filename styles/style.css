@@ -384,6 +384,7 @@ footer {
         margin: 20px;
         padding-left: 10px;
         transition: none;
+        font-size: 5rem;
     }
 
     p {
