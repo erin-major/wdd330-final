@@ -1,11 +1,11 @@
-import { getLocalStorage } from './utils.mjs'
-import { getRandomAnime } from './ExternalServices.mjs';
+import { getLocalStorage, getRandomInt } from './utils.mjs'
+import { getRandomAnime, getAnimeQuote } from './ExternalServices.mjs';
 
 export function renderAnime(anime, buttons = true) {
     let card = document.createElement('div');
     card.className = 'animeCard';
 
-    let title = document.createElement('h2');
+    let title = document.createElement('h3');
     let picture = document.createElement('img');
     let genres = document.createElement('p');
     let synopsis = document.createElement('p');
@@ -64,7 +64,7 @@ export async function displayRandomAnime() {
     let randomContainer = document.querySelector('#randomAnime');
 
     for (let i = 0; i < 3; i++) {
-        let anime = random.recommendations[i];
+        let anime = random.recommendations[getRandomInt(random.recommendations.length)];
 
         let card = document.createElement('div');
         card.className = 'randomAnimeCard';
@@ -79,6 +79,23 @@ export async function displayRandomAnime() {
 
         card.appendChild(title);
         card.appendChild(picture);
+        if (i === 0) { randomContainer.removeChild(randomContainer.querySelector('.fa-spinner')); };
         randomContainer.appendChild(card);
     }
+}
+
+export async function displayAnimeQuote() {
+    let quote = await getAnimeQuote();
+    
+    let quoteContainer = document.querySelector('#quote');
+    let quoteElement = document.createElement('p');
+    quoteElement.classList.add('quoteText');
+    let quoteAuthor = document.createElement('p');
+
+    quoteElement.textContent = `"${quote.quote}"`;
+    quoteAuthor.textContent = `- ${quote.author}`;
+
+    quoteContainer.removeChild(quoteContainer.querySelector('.fa-spinner'));
+    quoteContainer.appendChild(quoteElement);
+    quoteContainer.appendChild(quoteAuthor);
 }
