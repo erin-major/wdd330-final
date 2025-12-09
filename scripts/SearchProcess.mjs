@@ -1,6 +1,7 @@
 import { searchByTitle, searchByGenre } from './ExternalServices.mjs';
 import { renderAnime } from './AnimeDetails.mjs';
 import { setLocalStorage, getLocalStorage } from './utils.mjs';
+import { attachListClickHandler } from './ListActions.mjs';
 
 export default class SearchProcess {
     constructor(outputSelector) {
@@ -24,19 +25,11 @@ export default class SearchProcess {
         });
 
         const resultsContainer = document.querySelector('#results');
-
-        resultsContainer.addEventListener('click', (e) => {
-            const btn = e.target.closest('button');
-            if (!btn) return;  
-            if (btn.className === 'archive') {
-                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-            }
-            else {
-                btn.innerHTML = '<i class="fa-solid fa-star"></i>';
-            }
-            
-            this.addToList(btn.className, btn.id);
-        })
+        if (resultsContainer) {
+            attachListClickHandler(resultsContainer, {
+                getAnimeById: (id) => this.results?.find(a => a.id === id)
+            });
+        }
     }
 
     handleSearch() {
@@ -87,5 +80,11 @@ export default class SearchProcess {
             existingList.push(storingAnime);
         }
         setLocalStorage(list, existingList);
+    }
+
+    removeFromList(list, animeId) {
+        const existingList = getLocalStorage(list) || [];
+        const newList = existingList.filter(a => a.id !== animeId);
+        setLocalStorage(list, newList);
     }
 }

@@ -52,12 +52,23 @@ export function getLocalStorage(key) {
 export function setLocalStorage(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
 }
-// delete data from local storage
-export function deleteLocalStorage(key) {
-    localStorage.removeItem(key);
+
+export function addToList(list, animeObj) {
+    if (!animeObj) return;
+    const existingList = getLocalStorage(list) || [];
+    if (!existingList.find(a => a.id === animeObj.id)) {
+        existingList.push(animeObj);
+    }
+    setLocalStorage(list, existingList);
+}
+
+export function removeFromList(list, animeId) {
+    const existingList = getLocalStorage(list) || [];
+    const newList = existingList.filter(a => a.id !== animeId);
+    setLocalStorage(list, newList);
 }
 
 export function getRandomInt(max) {
-    return Math.floor(Math.random() * (max +1));
+    return Math.floor(Math.random() * (max + 1));
 }
 

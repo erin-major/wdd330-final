@@ -7,6 +7,8 @@ export function renderAnime(anime, buttons = true) {
 
     let title = document.createElement('h3');
     let picture = document.createElement('img');
+    let watchLater = document.createElement('button');
+    let archive = document.createElement('button');
     let genres = document.createElement('p');
     let synopsis = document.createElement('p');
 
@@ -19,26 +21,35 @@ export function renderAnime(anime, buttons = true) {
     picture.setAttribute('src', anime.image);
     picture.setAttribute('loading', 'lazy');
     picture.setAttribute('alt', anime.title);
+    watchLater.id = anime.id;
+    watchLater.classList.add('watchLater');
+    archive.id = anime.id;
+    archive.classList.add('archive');
+
+    if (inList(anime.id, 'watchLater')) {
+        watchLater.innerHTML = '<i class="fa-solid fa-star"></i>';
+        watchLater.title = 'Remove from watch later list';
+    }
+    else {
+        watchLater.innerHTML = '<i class="far fa-star"></i>';
+        watchLater.title = 'Add to watch later list';
+    }
+
+    if (inList(anime.id, 'archive')) {
+        archive.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+        archive.title = 'Mark as not watched';
+    }
+    else {
+        archive.innerHTML = '<i class="far fa-check-circle"></i>';
+        archive.title = 'Mark as watched';
+    }
 
     card.appendChild(title);
     card.appendChild(picture);
     card.appendChild(genres);
     card.appendChild(synopsis);
-
-    if (buttons) {
-        let watchLater = document.createElement('button');
-        let archive = document.createElement('button');
-        watchLater.innerHTML = '<i class="far fa-star"></i>';
-        watchLater.id = anime.id;
-        watchLater.title = 'Add to watch later list';
-        watchLater.classList.add('watchLater');
-        archive.innerHTML = '<i class="far fa-check-circle" ></i >';
-        archive.id = anime.id;
-        archive.title = 'Mark as watched';
-        archive.classList.add('archive');
-        card.appendChild(watchLater);
-        card.appendChild(archive);
-    }
+    card.appendChild(watchLater);
+    card.appendChild(archive);
 
     return card;
 }
@@ -100,4 +111,9 @@ export async function displayAnimeQuote() {
     quoteContainer.removeChild(quoteContainer.querySelector('.fa-spinner'));
     quoteContainer.appendChild(quoteElement);
     quoteContainer.appendChild(quoteAuthor);
+}
+
+function inList(animeId, list) {
+    const existingList = getLocalStorage(list) || [];
+    return existingList.find(a => a.id === animeId);
 }

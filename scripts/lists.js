@@ -1,5 +1,6 @@
 import { loadHeaderFooter, getLocalStorage } from './utils.mjs';
 import { displayListOfAnime } from './AnimeDetails.mjs';
+import { attachListClickHandler } from './ListActions.mjs';
 
 await loadHeaderFooter();
 
@@ -29,3 +30,6 @@ menu.addEventListener('click', () => {
 
 displayListOfAnime('archive', archive);
 displayListOfAnime('watchLater', watchList);
+
+attachListClickHandler(archive);
+attachListClickHandler(watchList);
