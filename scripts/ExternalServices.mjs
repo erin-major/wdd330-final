@@ -1,5 +1,4 @@
 const searchUrl = "https://anime-db.p.rapidapi.com/anime"
-const randomUrl = "http://api.anidb.net:9001/httpapi"
 
 export async function convertToJson(res) {
     const jsonResponse = await res.json();
@@ -48,19 +47,6 @@ export async function searchByGenre(page, size, genre) {
         console.error(error);
     }
 }
-
-export async function getRandomAnime() { 
-    const url = `${randomUrl}?client=animatefinal&clientver=1&protover=1&request=randomrecommendation`;
-    
-    try {
-        let response = await fetch(`${url}`);
-        console.log("random worked");
-        console.log(response);
-    } catch (error) {
-        console.error(error);
-    }
-}
-
 
 
 
