@@ -192,7 +192,6 @@ footer {
     background-color: var(--neutral-color-1);
     border-radius: 30px;
     border: none;
-    color: var(--primary-color);
     font-weight: bold;
     box-shadow: 0 0 3px var(--secondary-color);
     cursor: pointer;
