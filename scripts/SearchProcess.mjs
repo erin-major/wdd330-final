@@ -55,6 +55,8 @@ export default class SearchProcess {
             this.results = results.data;
         } catch (err) {
             console.error(err);
+            const results = document.querySelector('#results');
+            results.innerHTML = '<p>Search failed — please try again.</p>';
         }
     }
 

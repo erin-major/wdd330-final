@@ -73,8 +73,16 @@ export function displayListOfAnime(list, elementId) {
 }
 
 export async function displayRandomAnime() {
-    let random = await getRandomAnime();
     let randomContainer = document.querySelector('#randomAnime');
+    try {
+        const random = await getRandomAnime();
+        if (!random || !random.recommendations || random.recommendations.length === 0) {
+            let errorMessage = document.createElement('p');
+            errorMessage.classList.add('errorMessage');
+            errorMessage.innerHTML = 'Unable to load recommendations.';
+            randomContainer.appendChild(errorMessage);
+            return;
+        }
 
     for (let i = 0; i < 3; i++) {
         let anime = random.recommendations[getRandomInt(random.recommendations.length)];
@@ -85,32 +93,58 @@ export async function displayRandomAnime() {
         let title = document.createElement('h3');
         let picture = document.createElement('img');
 
-        title.textContent = anime.liked.title;
-        picture.setAttribute('src', anime.liked.picture_url);
-        picture.setAttribute('loading', 'lazy');
-        picture.setAttribute('alt', anime.liked.title);
+            title.textContent = anime?.liked?.title || 'Unknown title';
+            picture.setAttribute('src', anime?.liked?.picture_url || '');
+            picture.setAttribute('loading', 'lazy');
+            picture.setAttribute('alt', anime?.liked?.title || '');
 
-        card.appendChild(title);
-        card.appendChild(picture);
-        if (i === 0) { randomContainer.removeChild(randomContainer.querySelector('.fa-spinner')); };
-        randomContainer.appendChild(card);
+            card.appendChild(title);
+            card.appendChild(picture);
+            randomContainer.appendChild(card);
+        }
+    } catch (err) {
+        console.error(err);
+        let errorMessage = document.createElement('p');
+        errorMessage.innerHTML = 'Unable to load recommendations.';
+        errorMessage.classList.add('errorMessage');
+        randomContainer.appendChild(errorMessage);
+    } finally {
+        const spinner = randomContainer?.querySelector('.fa-spinner');
+        if (spinner && spinner.parentElement) spinner.parentElement.removeChild(spinner);
     }
 }
 
 export async function displayAnimeQuote() {
-    let quote = await getAnimeQuote();
-    
-    let quoteContainer = document.querySelector('#quote');
-    let quoteElement = document.createElement('p');
-    quoteElement.classList.add('quoteText');
-    let quoteAuthor = document.createElement('p');
+    const quoteContainer = document.querySelector('#quote');
+    try {
+        const quote = await getAnimeQuote();
+        if (!quote || !quote.quote) {
+            let errorMessage = document.createElement('p');
+            errorMessage.classList.add('errorMessage');
+            errorMessage.innerHTML = 'Unable to load quote.';
+            quoteContainer.appendChild(errorMessage);
+            return;
+        }
 
-    quoteElement.textContent = `"${quote.quote}"`;
-    quoteAuthor.textContent = `- ${quote.author}`;
+        const quoteElement = document.createElement('p');
+        quoteElement.classList.add('quoteText');
+        const quoteAuthor = document.createElement('p');
 
-    quoteContainer.removeChild(quoteContainer.querySelector('.fa-spinner'));
-    quoteContainer.appendChild(quoteElement);
-    quoteContainer.appendChild(quoteAuthor);
+        quoteElement.textContent = `"${quote.quote}"`;
+        quoteAuthor.textContent = `- ${quote.author || 'Unknown'}`;
+
+        quoteContainer.appendChild(quoteElement);
+        quoteContainer.appendChild(quoteAuthor);
+    } catch (err) {
+        console.error(err);
+        let errorMessage = document.createElement('p');
+        errorMessage.classList.add('errorMessage');
+        errorMessage.innerHTML = 'Unable to load quote.';
+        quoteContainer.appendChild(errorMessage);
+    } finally {
+        const spinner = quoteContainer?.querySelector('.fa-spinner');
+        if (spinner && spinner.parentElement) spinner.parentElement.removeChild(spinner);
+    }
 }
 
 function inList(animeId, list) {
