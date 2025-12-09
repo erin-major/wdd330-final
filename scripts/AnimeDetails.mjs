@@ -13,7 +13,13 @@ export function renderAnime(anime) {
     genres.textContent = anime.genres.join(", ");
     synopsis.textContent = anime.synopsis;
     watchLater.innerHTML = '<i class="far fa-star"></i>';
+    watchLater.id = anime.id;
+    watchLater.title = 'Add to watch later list';
+    watchLater.classList.add('watchLater');
     watched.innerHTML = '<i class="far fa-check-circle" ></i >';
+    watched.id = anime.id;
+    watched.title = 'Mark as watched';
+    watched.classList.add('watched');
 
     picture.setAttribute('src', anime.image);
     picture.setAttribute('loading', 'lazy');

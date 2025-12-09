@@ -44,3 +44,16 @@ function getDatesInFooter() {
     }, 0);
 }
 
+// retrieve data from localstorage
+export function getLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key));
+}
+// save data to local storage
+export function setLocalStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+// delete data from local storage
+export function deleteLocalStorage(key) {
+    localStorage.removeItem(key);
+}
+

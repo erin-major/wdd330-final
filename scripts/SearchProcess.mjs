@@ -1,5 +1,6 @@
 import { searchByTitle, searchByGenre } from './ExternalServices.mjs';
 import { renderAnime } from './AnimeDetails.mjs';
+import { setLocalStorage, getLocalStorage } from './utils.mjs';
 
 export default class SearchProcess {
     constructor(outputSelector) {
@@ -17,6 +18,21 @@ export default class SearchProcess {
             console.log("form worked");
             this.handleSearch();
         });
+
+        const resultsContainer = document.querySelector('#results');
+
+        resultsContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;  
+            if (btn.className === 'watched') {
+                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+            }
+            else {
+                btn.innerHTML = '<i class="fa-solid fa-star"></i>';
+            }
+            
+            this.addToList(btn.className, btn.id);
+        })
     }
 
     handleSearch() {
@@ -41,6 +57,7 @@ export default class SearchProcess {
             }
             console.log("search worked");
             this.showResults(results);
+            this.results = results.data;
         } catch (err) {
             console.error(err);
         }
@@ -61,4 +78,14 @@ export default class SearchProcess {
         });
     }
 
+    addToList(list, animeId) {
+        const storingAnime = this.results?.find(a => a.id === animeId);
+        const existingList = getLocalStorage(list) || [];
+        if (existingList.find(a => a.id === animeId)) {
+        }
+        else {
+            existingList.push(storingAnime);
+        }
+        setLocalStorage(list, existingList);
+    }
 }
